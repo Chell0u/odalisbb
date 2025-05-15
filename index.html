@@ -2,14 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hola mi amor ♥</title>
+  <title>Piropo del Día ♥</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
       text-align: center;
-      margin-top: 50px;
-      background-color: #000000;
+      padding: 40px;
+    }
     }
     img {
       display: block;
@@ -19,16 +25,43 @@
       width: 300px;
     }
     h1 {
-      color: red;
+      color: #ff4d4d;
     }
-    p {
-      color: white;
+
+    #piropo {
+      font-size: 1.5em;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
     }
+
+    #autor {
+      font-style: italic;
+      color: #ccc;
+      margin-top: 10px;
+    }
+    <img src="MI AMOR Y YO.PNG" alt="MI AMOR Y YO" width="300" />
   </style>
 </head>
 <body>
-  <h1>Hola mi amor hermosa ♥</h1>
-  <p>Estoy probando unas cosas</p>
-  <img src="MI AMOR Y YO.png" alt="MI AMOR Y YO" width="300" />
+  <h1>💘 Piropo del Día 💘</h1>
+  <div id="piropo">Cargando piropo...</div>
+  <div id="autor"></div>
+
+  <script>
+    fetch('https://phrasesapi.onrender.com/getLoveAndFriendship')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('piropo').textContent = `"${data.phrase}"`;
+        document.getElementById('autor').textContent = `– ${data.author}`;
+      })
+      .catch(error => {
+        document.getElementById('piropo').textContent = 'No se pudo cargar el piropo 😔';
+        console.error('Error:', error);
+      });
+  </script>
 </body>
 </html>
